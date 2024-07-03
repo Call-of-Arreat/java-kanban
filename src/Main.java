@@ -32,11 +32,8 @@ public class Main {
         System.out.println();
         // меняю статусы задач
         taskManager.refreshTask(task1, Status.DONE);
-        taskManager.refreshSubTask(subtask1, Status.IN_PROGRESS);
-        taskManager.refreshSubTask(subtask3, Status.DONE);
-
-        taskManager.updateEpicTask(epic1);
-        taskManager.updateEpicTask(epic2);
+        taskManager.refreshSubTask(subtask1, Status.IN_PROGRESS, epic1);
+        taskManager.refreshSubTask(subtask3, Status.DONE, epic2);
 
         System.out.println("taskManager.getAllTasks = " + taskManager.getAllTasks());
         System.out.println("taskManager.getAllSubTasks = " + taskManager.getAllSubTasks());

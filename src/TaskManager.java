@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TaskManager {
-    Integer taskId = 1;
-    HashMap<Integer, Task> taskHashMap;
-    HashMap<Integer, Subtask> subtaskHashMap;
-    HashMap<Integer, Epic> epicHashMap;
-    ArrayList<Object> allTasksList;
+    private Integer taskId = 1;
+    private HashMap<Integer, Task> taskHashMap;
+    private HashMap<Integer, Subtask> subtaskHashMap;
+    private HashMap<Integer, Epic> epicHashMap;
+    private ArrayList<Object> allTasksList;
 
     public TaskManager() {
         this.taskHashMap = new HashMap<>();
@@ -62,7 +62,6 @@ public class TaskManager {
         subtaskHashMap.put(newTask.getId(), newTask);
         allTasksList.add(newTask);
         epic.setInSubtasksList(newTask);
-        epic.getSubTasksIds().add(newTask.getId());
         epic.getSubtasksList().add(newTask);
     }
 
@@ -79,13 +78,13 @@ public class TaskManager {
         taskHashMap.put(updateTask.getId(), updateTask);
     }
 
-    public void refreshSubTask(Subtask updateTask, Status status) {
+    public void refreshSubTask(Subtask updateTask, Status status, Epic epic) {
         updateTask.setStatus(status);
         subtaskHashMap.put(updateTask.getId(), updateTask);
+        updateEpicTask(epic);
     }
 
-    // статус Эпика менять нельзя, от зависит от статусов подзадач
-    public void updateEpicTask(Epic updateEpicTask) {
+    private void updateEpicTask(Epic updateEpicTask) {
         if (updateEpicTask.getSubtasksList().size() == 1) {
             updateEpicTask.setStatus(updateEpicTask.getSubtasksList().getFirst().getStatus());
         } else {
