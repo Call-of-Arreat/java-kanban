@@ -72,18 +72,25 @@ public class TaskManager {
         epicHashMap.put(newTask.getId(), newTask);
         allTasksList.add(newTask);
     }
-
+//    Не обязательно делать такой метод.
+//    Изменить статус можно и через обычный метод updateTask,
+//    которого сейчас нет.
     public void refreshTask(Task updateTask, Status status) {
         updateTask.setStatus(status);
         taskHashMap.put(updateTask.getId(), updateTask);
     }
-
+//    Не вижу вызовов этого метода. И этот метод не нужен.
+//    Нужно из метода addNewSubTask вызвать updateEpicTask.
+//    Аналогично из метода updateSubTask вызвать updateEpicTask.
+//    И из метода removeById вызвать updateEpicTask.
     public void refreshSubTask(Subtask updateTask, Status status, Epic epic) {
         updateTask.setStatus(status);
         subtaskHashMap.put(updateTask.getId(), updateTask);
         updateEpicTask(epic);
     }
-
+//    update - глагол. Названия методов должны начинаться с глагола.
+//    Начинать название переменных с глагола не есть хорошо.
+//    Используют причастия updatedEpicTask.
     private void updateEpicTask(Epic updateEpicTask) {
         if (updateEpicTask.getSubtasksList().size() == 1) {
             updateEpicTask.setStatus(updateEpicTask.getSubtasksList().getFirst().getStatus());
