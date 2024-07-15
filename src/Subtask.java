@@ -1,7 +1,14 @@
 public class Subtask extends Task {
+    private final Epic epic;
 
-    public Subtask(String name, String description) {
+    public Epic getEpic() {
+        return epic;
+    }
+
+    public Subtask(String name, String description, Epic epic) {
         super(name, description);
+        this.epic = epic;
+
     }
 
     @Override
@@ -12,5 +19,12 @@ public class Subtask extends Task {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return "Subtask{" +
+                "epic=" + epic.getName() +
+                "} " + super.toString();
     }
 }
