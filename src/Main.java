@@ -7,8 +7,8 @@ public class Main {
         // создание task
         Task task1 = new Task("Task1", "some description");
         Task task2 = new Task("Task2", "some description 2");
-        Task task3= new Task("Task3", "some description 3");
-        Task task4= new Task("Task4", "some description 4");
+        Task task3 = new Task("Task3", "some description 3");
+        Task task4 = new Task("Task4", "some description 4");
         Task task5 = new Task("Task5", "some description 5");
         Task task6 = new Task("Task6", "some description 6");
         Task task7 = new Task("Task7", "some description 7");

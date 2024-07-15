@@ -22,12 +22,9 @@ public interface TaskManager {
 
     void updateTask(Task updateTask, Status status);
 
-
     void updateSubTask(Subtask updateTask, Status status, Epic epic);
 
-
     void updateEpicTask(Epic updateEpicTask);
-
 
     void removeById(Integer id);
 }

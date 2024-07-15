@@ -1,10 +1,11 @@
-import java.util.ArrayList;
+import java.util.Objects;
 
 public class Task {
     private String name;
     private String description;
     private int id;
     private Status status;
+
 
     public String getName() {
         return name;
@@ -41,6 +42,19 @@ public class Task {
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     @Override

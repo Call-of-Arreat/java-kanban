@@ -2,10 +2,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class InMemoryTaskManagerTest {
-    InMemoryTaskManager inMemoryTaskManager = new InMemoryTaskManager();
+
+    TaskManager taskManager = Managers.getDefault();
 
     @Test
     void getTaskId() {
@@ -38,15 +40,16 @@ class InMemoryTaskManagerTest {
     @Test
     void addNewTask() {
         Task task = new Task("some Test Name", "some description");
-        inMemoryTaskManager.addNewTask(task);
-        final int taskId = inMemoryTaskManager.getTaskId() - 1;
 
-        final Task taskFromManager = inMemoryTaskManager.getAnyTaskById(taskId);
+        taskManager.addNewTask(task);
+        int taskId = taskManager.getAllTasks().getFirst().getId();
 
-        assertNotNull(taskFromManager, "Задача не найдена");
-        assertEquals(task, taskFromManager);
+        Task anyTaskById = taskManager.getAnyTaskById(taskId - 1);
 
-        ArrayList<Task> allTasks = inMemoryTaskManager.getAllTasks();
+        assertNotNull(anyTaskById, "Задача не найдена");
+        assertEquals(task, anyTaskById);
+
+        ArrayList<Task> allTasks = taskManager.getAllTasks();
         assertNotNull(allTasks, "Задачи не возвращаются.");
         assertEquals(1, allTasks.size(), "Неверное количество задач.");
         assertEquals(task, allTasks.getFirst(), "Задачи не совпадают.");

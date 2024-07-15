@@ -14,15 +14,12 @@ public class InMemoryTaskManager implements TaskManager {
     private HashMap<Integer, Subtask> subtaskHashMap;
     private HashMap<Integer, Epic> epicHashMap;
     private ArrayList<Task> allTasksList;
-    private List<Task> taskInHistory;
-
 
     public InMemoryTaskManager() {
         this.taskHashMap = new HashMap<>();
         this.subtaskHashMap = new HashMap<>();
         this.epicHashMap = new HashMap<>();
         this.allTasksList = new ArrayList<>();
-        this.taskInHistory = new ArrayList<>(10);
         this.historyManager = Managers.getDefaultHistory();
     }
 
@@ -57,19 +54,13 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task getAnyTaskById(Integer id) {
         if (taskHashMap.containsKey(id)) {
-            taskInHistory.add(allTasksList.get(id));
-//            System.out.println("taskInHistory = " + taskInHistory);
-//            System.out.println("taskInHistory.size = " + taskInHistory.size());
+            historyManager.add(allTasksList.get(id));
             return taskHashMap.get(id);
         } else if (subtaskHashMap.containsKey(id)) {
-            taskInHistory.add(allTasksList.get(id));
-//            System.out.println("taskInHistory = " + taskInHistory);
-//            System.out.println("taskInHistory.size = " + taskInHistory.size());
+            historyManager.add(allTasksList.get(id));
             return subtaskHashMap.get(id);
         } else if (epicHashMap.containsKey(id)) {
-            taskInHistory.add(allTasksList.get(id));;
-//            System.out.println("taskInHistory = " + taskInHistory);
-//            System.out.println("taskInHistory.size = " + taskInHistory.size());
+            historyManager.add(allTasksList.get(id));
             return epicHashMap.get(id);
         }
         return null;
