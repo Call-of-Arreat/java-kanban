@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public interface TaskManager {
-    ArrayList<Task> getAllTasks();
+    List<Task> getAllTasks();
 
-    ArrayList<Subtask> getAllSubTasks();
+    List<Subtask> getAllSubTasks();
 
-    ArrayList<Epic> getAllEpicTasks();
+    List<Epic> getAllEpicTasks();
 
     List<Task> getHistory();
 

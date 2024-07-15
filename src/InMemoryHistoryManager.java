@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    private final static int LIMIT_OF_HISTORY_LIST = 10;
-    private List<Task> taskInHistory;
+    private static final int LIMIT_OF_HISTORY_LIST = 10;
+    private final List<Task> taskInHistory;
 
     public InMemoryHistoryManager() {
 
-        this.taskInHistory = new ArrayList<>(10);
+        this.taskInHistory = new ArrayList<>(LIMIT_OF_HISTORY_LIST);
     }
 
     @Override

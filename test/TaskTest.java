@@ -18,33 +18,4 @@ class TaskTest {
         assertEquals(task1, task2, "Ошибка, задачи с одинаковым >>id<< должны быть равны друг другу");
     }
 
-
-    @Test
-    void getName() {
-
-    }
-
-    @Test
-    void setName() {
-    }
-
-    @Test
-    void getDescription() {
-    }
-
-    @Test
-    void setDescription() {
-    }
-
-    @Test
-    void getId() {
-    }
-
-    @Test
-    void getStatus() {
-    }
-
-    @Test
-    void setStatus() {
-    }
 }

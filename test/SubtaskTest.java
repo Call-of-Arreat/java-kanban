@@ -20,5 +20,14 @@ class SubtaskTest {
 
     @Test
     void getEpic() {
+        Epic epic1 = new Epic("epic1", "asdfdasfdasf");
+        Subtask subtask1 = new Subtask("subtask1", "asdfdasfdasf", new Epic("1", "sdsdfak"));
+
+        taskManager.addNewEpicTask(epic1);
+        taskManager.addNewSubTask(subtask1, epic1);
+
+        Epic epicFromSubtask = subtask1.getEpic();
+        assertEquals(epic1, epicFromSubtask);
+
     }
 }

@@ -5,11 +5,7 @@ import java.util.List;
 public class InMemoryTaskManager implements TaskManager {
     private Integer taskId = 1;
 
-    public Integer getTaskId() {
-        return taskId;
-    }
-
-    InMemoryHistoryManager historyManager;
+    private InMemoryHistoryManager historyManager;
     private HashMap<Integer, Task> taskHashMap;
     private HashMap<Integer, Subtask> subtaskHashMap;
     private HashMap<Integer, Epic> epicHashMap;
@@ -24,17 +20,17 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Task> getAllTasks() {
+    public List<Task> getAllTasks() {
         return new ArrayList<>(taskHashMap.values());
     }
 
     @Override
-    public ArrayList<Subtask> getAllSubTasks() {
+    public List<Subtask> getAllSubTasks() {
         return new ArrayList<>(subtaskHashMap.values());
     }
 
     @Override
-    public ArrayList<Epic> getAllEpicTasks() {
+    public List<Epic> getAllEpicTasks() {
         return new ArrayList<>(epicHashMap.values());
     }
 
@@ -117,14 +113,11 @@ public class InMemoryTaskManager implements TaskManager {
             updateEpicTask.setStatus(updateEpicTask.getSubtasksList().getFirst().getStatus());
         } else {
             int countNew = 0;
-            int countInProgress = 0;
             int countDone = 0;
-            ArrayList<Subtask> subtasksList = updateEpicTask.getSubtasksList();
+            List<Subtask> subtasksList = updateEpicTask.getSubtasksList();
             for (Subtask subtask : subtasksList) {
                 if (subtask.getStatus().equals(Status.NEW)) {
                     countNew++;
-                } else if (subtask.getStatus().equals(Status.IN_PROGRESS)) {
-                    countInProgress++;
                 } else if (subtask.getStatus().equals(Status.DONE)) {
                     countDone++;
                 }
@@ -149,7 +142,7 @@ public class InMemoryTaskManager implements TaskManager {
             subtaskHashMap.remove(id);
             updateEpicTask(epic);
         } else {
-            ArrayList<Subtask> subtasksListToDelete = epicHashMap.get(id).getSubtasksList();
+            List<Subtask> subtasksListToDelete = epicHashMap.get(id).getSubtasksList();
             for (Subtask subtask : subtasksListToDelete) {
                 subtaskHashMap.remove(subtask.getId());
             }

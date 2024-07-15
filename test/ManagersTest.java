@@ -14,12 +14,4 @@ class ManagersTest {
         assertNotNull(Managers.getDefaultHistory());
     }
 
-
-    @Test
-    void getDefault() {
-    }
-
-    @Test
-    void getDefaultHistory() {
-    }
 }
