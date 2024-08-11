@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
     private Integer taskId = 1;
 
     private InMemoryHistoryManager historyManager;
-    private HashMap<Integer, Task> taskHashMap;
-    private HashMap<Integer, Subtask> subtaskHashMap;
-    private HashMap<Integer, Epic> epicHashMap;
+    private Map<Integer, Task> taskHashMap;
+    private Map<Integer, Subtask> subtaskHashMap;
+    private Map<Integer, Epic> epicHashMap;
     private ArrayList<Task> allTasksList;
 
     public InMemoryTaskManager() {

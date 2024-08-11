@@ -27,4 +27,10 @@ public class InMemoryHistoryManager implements HistoryManager {
         return taskInHistory;
     }
 
+    @Override
+    public void remove(int id) {
+
+    }
+
+
 }
