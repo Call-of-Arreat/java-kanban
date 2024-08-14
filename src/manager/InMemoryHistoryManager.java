@@ -1,16 +1,14 @@
+package manager;
+
+import tasks.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    private static final int LIMIT_OF_HISTORY_LIST = 10;
-    private final List<Task> taskInHistory;
     private final CustomLinkedList history = new CustomLinkedList();
-
-    public InMemoryHistoryManager() {
-        this.taskInHistory = new ArrayList<>(LIMIT_OF_HISTORY_LIST);
-    }
 
     @Override
     public void add(Task task) {

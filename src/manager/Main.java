@@ -1,3 +1,11 @@
+package manager;
+
+import tasks.Epic;
+import tasks.status.Status;
+import tasks.Subtask;
+import tasks.Task;
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -73,16 +81,16 @@ public class Main {
         System.out.println();
 
         System.out.println("Выберу пару задач методом getTask");
-        System.out.println(taskManager.getAnyTaskById(2));
-        System.out.println(taskManager.getAnyTaskById(3));
-        System.out.println(taskManager.getAnyTaskById(4));
-        System.out.println(taskManager.getAnyTaskById(5));
-        System.out.println(taskManager.getAnyTaskById(6));
-        System.out.println(taskManager.getAnyTaskById(7));
-        System.out.println(taskManager.getAnyTaskById(8));
-        System.out.println(taskManager.getAnyTaskById(9));
-        System.out.println(taskManager.getAnyTaskById(10));
-        System.out.println(taskManager.getAnyTaskById(11));
+        System.out.println(taskManager.getTaskById(2));
+        System.out.println(taskManager.getTaskById(3));
+        System.out.println(taskManager.getTaskById(4));
+        System.out.println(taskManager.getTaskById(5));
+        System.out.println(taskManager.getTaskById(6));
+        System.out.println(taskManager.getTaskById(7));
+        System.out.println(taskManager.getTaskById(8));
+        System.out.println(taskManager.getTaskById(9));
+        System.out.println(taskManager.getTaskById(10));
+        System.out.println(taskManager.getTaskById(11));
         //getHistory()
         System.out.println(taskManager.getHistory());
 

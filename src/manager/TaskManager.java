@@ -1,3 +1,10 @@
+package manager;
+
+import tasks.Epic;
+import tasks.status.Status;
+import tasks.Subtask;
+import tasks.Task;
+
 import java.util.List;
 
 public interface TaskManager {
@@ -11,7 +18,7 @@ public interface TaskManager {
 
     void removeAllTasks();
 
-    Task getAnyTaskById(Integer id);
+    Task getTaskById(Integer id);
 
     void addNewTask(Task newTask);
 
