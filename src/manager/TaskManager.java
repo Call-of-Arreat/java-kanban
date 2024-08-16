@@ -1,5 +1,10 @@
-import java.util.ArrayList;
-import java.util.Collection;
+package manager;
+
+import tasks.Epic;
+import tasks.status.Status;
+import tasks.Subtask;
+import tasks.Task;
+
 import java.util.List;
 
 public interface TaskManager {
@@ -13,7 +18,7 @@ public interface TaskManager {
 
     void removeAllTasks();
 
-    Task getAnyTaskById(Integer id);
+    Task getTaskById(Integer id);
 
     void addNewTask(Task newTask);
 
@@ -25,7 +30,11 @@ public interface TaskManager {
 
     void updateSubTask(Subtask updateTask, Status status, Epic epic);
 
-    void updateEpicTask(Epic updateEpicTask);
+    void updateEpicTaskStatus(Epic updateEpicTask);
 
-    void removeById(Integer id);
+    void removeSubTaskById(Integer id);
+
+    void removeEpicById(int id);
+
+    void removeTaskById(int id);
 }

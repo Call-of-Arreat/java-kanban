@@ -1,3 +1,11 @@
+package manager;
+
+import tasks.Epic;
+import tasks.status.Status;
+import tasks.Subtask;
+import tasks.Task;
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -20,9 +28,9 @@ public class Main {
         Epic epic1 = new Epic("Epic 1", "descripiton epic 1");
         Epic epic2 = new Epic("Epic 2", "descripiton epic 2");
 
-        Subtask subtask1 = new Subtask("Subtask1", "some subtask description", epic1);
-        Subtask subtask2 = new Subtask("Subtask2", "some subtask description 2", epic1);
-        Subtask subtask3 = new Subtask("Subtask3", "some subtask description 3", epic2);
+        Subtask subtask1 = new Subtask("Subtask1", "some subtask description", epic1.getId());
+        Subtask subtask2 = new Subtask("Subtask2", "some subtask description 2", epic1.getId());
+        Subtask subtask3 = new Subtask("Subtask3", "some subtask description 3", epic2.getId());
 
 
         taskManager.addNewEpicTask(epic1);
@@ -73,16 +81,16 @@ public class Main {
         System.out.println();
 
         System.out.println("Выберу пару задач методом getTask");
-        System.out.println(taskManager.getAnyTaskById(2));
-        System.out.println(taskManager.getAnyTaskById(3));
-        System.out.println(taskManager.getAnyTaskById(4));
-        System.out.println(taskManager.getAnyTaskById(5));
-        System.out.println(taskManager.getAnyTaskById(6));
-        System.out.println(taskManager.getAnyTaskById(7));
-        System.out.println(taskManager.getAnyTaskById(8));
-        System.out.println(taskManager.getAnyTaskById(9));
-        System.out.println(taskManager.getAnyTaskById(10));
-        System.out.println(taskManager.getAnyTaskById(11));
+        System.out.println(taskManager.getTaskById(2));
+        System.out.println(taskManager.getTaskById(3));
+        System.out.println(taskManager.getTaskById(4));
+        System.out.println(taskManager.getTaskById(5));
+        System.out.println(taskManager.getTaskById(6));
+        System.out.println(taskManager.getTaskById(7));
+        System.out.println(taskManager.getTaskById(8));
+        System.out.println(taskManager.getTaskById(9));
+        System.out.println(taskManager.getTaskById(10));
+        System.out.println(taskManager.getTaskById(11));
         //getHistory()
         System.out.println(taskManager.getHistory());
 
@@ -90,8 +98,8 @@ public class Main {
         System.out.println();
         System.out.println("Удаляю первую задачу и первый эпик");
         // удалю первую задачу и первый эпик
-        taskManager.removeById(3);
-        taskManager.removeById(7);
+        taskManager.removeTaskById(1);
+        taskManager.removeEpicById(3);
 
         System.out.println("taskManager.getAllTasks = " + taskManager.getAllTasks());
         System.out.println("taskManager.getAllSubTasks = " + taskManager.getAllSubTasks());
