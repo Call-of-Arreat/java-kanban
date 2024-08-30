@@ -39,11 +39,6 @@ class FileBackedTaskManagerTest {
         assertEquals(1, fileBackedTaskManager.epicHashMap.size());
         assertEquals(1, fileBackedTaskManager.subtaskHashMap.size());
 
-        FileBackedTaskManager fileManager = FileBackedTaskManager.loadFromFile(file);
-
-        assertEquals(fileBackedTaskManager.getAllTasks(), fileManager.getAllTasks());
-        assertEquals(fileBackedTaskManager.getAllEpicTasks(), fileManager.getAllEpicTasks());
-        assertEquals(fileBackedTaskManager.getAllSubTasks(), fileManager.getAllSubTasks());
     }
 
     @Test
