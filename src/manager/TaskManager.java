@@ -1,15 +1,15 @@
 package manager;
 
 import tasks.Epic;
-import tasks.status.Status;
 import tasks.Subtask;
 import tasks.Task;
+import tasks.status.Status;
 
 import java.util.List;
 
 public interface TaskManager {
 
-    public int generateId();
+    int generateId();
 
     List<Task> getAllTasks();
 

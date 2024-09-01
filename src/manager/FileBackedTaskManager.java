@@ -5,12 +5,7 @@ import tasks.Subtask;
 import tasks.Task;
 import tasks.status.Status;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
@@ -29,21 +24,18 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             String line = bufferedReader.readLine();
-
-            while (bufferedReader.ready()) {
-                line = bufferedReader.readLine();
-
+            while ((line = bufferedReader.readLine()) != null) {
                 Task task = taskFromString(line);
-                if (task.getType().equals(TaskType.EPIC)) {
-                    fileManager.epicHashMap.put(task.getId(), (Epic) task);
-                } else if (task.getType().equals(TaskType.SUBTASK)) {
-                    fileManager.subtaskHashMap.put(task.getId(), (Subtask) task);
-                    fileManager.epicHashMap.get(((Subtask) task).getEpicId()).setSubTaskIds(task.getId());
+                if (TaskType.EPIC.equals(task.getType())) {
+                    fileManager.getEpicHashMap().put(task.getId(), (Epic) task);
+                } else if (TaskType.SUBTASK.equals(task.getType())) {
+                    fileManager.getSubtaskHashMap().put(task.getId(), (Subtask) task);
+                    fileManager.getEpicHashMap().get(((Subtask) task).getEpicId()).setSubTaskIds(task.getId());
                 } else {
-                    fileManager.taskHashMap.put(task.getId(), task);
+                    fileManager.getTaskHashMap().put(task.getId(), task);
                 }
-                if (fileManager.taskId < task.getId()) {
-                    fileManager.taskId = task.getId();
+                if (fileManager.getTaskId() < task.getId()) {
+                    fileManager.setTaskId(task.getId());
                 }
             }
         } catch (IOException e) {
@@ -96,10 +88,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         String name = lines[2];
         Status status = Status.valueOf(lines[3]);
         String description = lines[4];
-
-        if (taskType.equals("EPIC")) {
+        if ("EPIC".equals(taskType)) {
             return new Epic(id, name, status, description);
-        } else if (taskType.equals("SUBTASK")) {
+        } else if ("SUBTASK".equals(taskType)) {
             int epicId = Integer.parseInt(lines[5]);
             return new Subtask(id, name, status, description, epicId);
         } else {
@@ -108,8 +99,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     private static String getEpicId(Task task) {
-        if (task.getType().equals(TaskType.SUBTASK)) {
-            return "," + Integer.toString(((Subtask) task).getEpicId());
+        if (TaskType.SUBTASK.equals(task.getType())) {
+            return "," + (task).getId();
         } else {
             return "";
         }

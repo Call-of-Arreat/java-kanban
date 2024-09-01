@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
-    static InMemoryHistoryManager history;
-    protected Integer taskId = 1;
+    private static InMemoryHistoryManager history;
+    private Integer taskId = 1;
 
-    protected Map<Integer, Task> taskHashMap;
-    protected Map<Integer, Subtask> subtaskHashMap;
-    protected Map<Integer, Epic> epicHashMap;
-    protected List<Task> allTasksList;
+    private Map<Integer, Task> taskHashMap;
+    private Map<Integer, Subtask> subtaskHashMap;
+    private Map<Integer, Epic> epicHashMap;
+    private List<Task> allTasksList;
 
     public InMemoryTaskManager(InMemoryHistoryManager history) {
         this.taskHashMap = new HashMap<>();
@@ -27,8 +27,48 @@ public class InMemoryTaskManager implements TaskManager {
         InMemoryTaskManager.history = history;
     }
 
-    public InMemoryTaskManager() {
-        history = new InMemoryHistoryManager();
+    public static void setHistory(InMemoryHistoryManager history) {
+        InMemoryTaskManager.history = history;
+    }
+
+    public Integer getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
+    }
+
+    public Map<Integer, Task> getTaskHashMap() {
+        return taskHashMap;
+    }
+
+    public void setTaskHashMap(Map<Integer, Task> taskHashMap) {
+        this.taskHashMap = taskHashMap;
+    }
+
+    public Map<Integer, Subtask> getSubtaskHashMap() {
+        return subtaskHashMap;
+    }
+
+    public void setSubtaskHashMap(Map<Integer, Subtask> subtaskHashMap) {
+        this.subtaskHashMap = subtaskHashMap;
+    }
+
+    public Map<Integer, Epic> getEpicHashMap() {
+        return epicHashMap;
+    }
+
+    public void setEpicHashMap(Map<Integer, Epic> epicHashMap) {
+        this.epicHashMap = epicHashMap;
+    }
+
+    public List<Task> getAllTasksList() {
+        return allTasksList;
+    }
+
+    public void setAllTasksList(List<Task> allTasksList) {
+        this.allTasksList = allTasksList;
     }
 
     @Override

@@ -35,9 +35,9 @@ class FileBackedTaskManagerTest {
         fileBackedTaskManager.addNewEpicTask(epic);
         fileBackedTaskManager.addNewSubTask(subTask);
 
-        assertEquals(1, fileBackedTaskManager.taskHashMap.size());
-        assertEquals(1, fileBackedTaskManager.epicHashMap.size());
-        assertEquals(1, fileBackedTaskManager.subtaskHashMap.size());
+        assertEquals(1, fileBackedTaskManager.getTaskHashMap().size());
+        assertEquals(1, fileBackedTaskManager.getEpicHashMap().size());
+        assertEquals(1, fileBackedTaskManager.getSubtaskHashMap().size());
 
     }
 
@@ -46,8 +46,8 @@ class FileBackedTaskManagerTest {
         File emptyFile = File.createTempFile("emptyTest", ".csv");
         FileBackedTaskManager loadFile = FileBackedTaskManager.loadFromFile(emptyFile);
         assertNotNull(loadFile);
-        assertEquals(0, loadFile.epicHashMap.size());
-        assertEquals(0, loadFile.subtaskHashMap.size());
-        assertEquals(0, loadFile.taskHashMap.size());
+        assertEquals(0, loadFile.getEpicHashMap().size());
+        assertEquals(0, loadFile.getSubtaskHashMap().size());
+        assertEquals(0, loadFile.getTaskHashMap().size());
     }
 }
