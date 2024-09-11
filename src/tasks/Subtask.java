@@ -3,12 +3,15 @@ package tasks;
 import manager.TaskType;
 import tasks.status.Status;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 public class Subtask extends Task {
 
     private final int epicId;
 
-    public Subtask(String name, String description, int epicId) {
-        super(name, description);
+    public Subtask(String name, String description, Duration duration, LocalDateTime startTime, int epicId) {
+        super(name, description, duration, startTime);
         this.epicId = epicId;
     }
 
@@ -17,8 +20,15 @@ public class Subtask extends Task {
         this.epicId = epicId;
     }
 
-    public Subtask(int taskId, String taskName, Status taskStatus, String taskDescription, int epicId) {
-        super(taskId, taskName, taskStatus, taskDescription);
+    public Subtask(int taskId, String taskName, Status taskStatus, String taskDescription, int epicId,
+                   Duration duration, LocalDateTime startTime) {
+        super(taskId, taskName, taskStatus, taskDescription, duration, startTime);
+        this.epicId = epicId;
+
+    }
+
+    public Subtask(String name, String description, int epicId) {
+        super(name, description);
         this.epicId = epicId;
     }
 

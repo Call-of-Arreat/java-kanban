@@ -67,6 +67,7 @@ public class Main {
         System.out.println("У subtask1 меняю NEW на IN_PROGRESS");
         System.out.println("У subtask3 меняю NEW на DONE");
         taskManager.updateTask(task1, Status.DONE);
+        subtask2.setStatus(Status.IN_PROGRESS);
         taskManager.updateSubTask(subtask1, Status.IN_PROGRESS, epic1);
         taskManager.updateSubTask(subtask3, Status.DONE, epic2);
         System.out.println();
