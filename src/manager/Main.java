@@ -1,16 +1,16 @@
 package manager;
 
 import tasks.Epic;
-import tasks.status.Status;
 import tasks.Subtask;
 import tasks.Task;
+import tasks.status.Status;
 
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("Поехали!");
-        TaskManager taskManager = Managers.getDefault();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(new InMemoryHistoryManager());
 
         // создание task
         Task task1 = new Task("Task1", "some description");

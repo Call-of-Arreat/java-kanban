@@ -1,5 +1,6 @@
 package tasks;
 
+import manager.TaskType;
 import tasks.status.Status;
 
 import java.util.Objects;
@@ -13,6 +14,20 @@ public class Task {
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
+        status = Status.NEW;
+    }
+
+    public Task(int taskId, String taskName, Status taskStatus, String taskDescription) {
+        this.id = taskId;
+        this.name = taskName;
+        this.status = taskStatus;
+        this.description = taskDescription;
+    }
+
+    public Task(String taskName, String taskDescription, Status taskStatus) {
+        this.name = taskName;
+        this.description = taskDescription;
+        this.status = taskStatus;
     }
 
     public String getName() {
@@ -33,6 +48,14 @@ public class Task {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public TaskType getType() {
+        return TaskType.TASK;
     }
 
     @Override

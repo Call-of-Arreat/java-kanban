@@ -10,6 +10,7 @@ import java.util.Map;
 public class InMemoryHistoryManager implements HistoryManager {
     private final CustomLinkedList history = new CustomLinkedList();
 
+
     @Override
     public void add(Task task) {
         if (task == null) {

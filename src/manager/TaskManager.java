@@ -1,13 +1,16 @@
 package manager;
 
 import tasks.Epic;
-import tasks.status.Status;
 import tasks.Subtask;
 import tasks.Task;
+import tasks.status.Status;
 
 import java.util.List;
 
 public interface TaskManager {
+
+    int generateId();
+
     List<Task> getAllTasks();
 
     List<Subtask> getAllSubTasks();
@@ -24,11 +27,17 @@ public interface TaskManager {
 
     void addNewSubTask(Subtask newTask, Epic epic);
 
+    void addNewSubTask(Subtask newSubtask);
+
     void addNewEpicTask(Epic newTask);
 
     void updateTask(Task updateTask, Status status);
 
+    void updateTask(Task updateTask);
+
     void updateSubTask(Subtask updateTask, Status status, Epic epic);
+
+    void updateSubTask(Subtask updateSubTask);
 
     void updateEpicTaskStatus(Epic updateEpicTask);
 
@@ -37,4 +46,10 @@ public interface TaskManager {
     void removeEpicById(int id);
 
     void removeTaskById(int id);
+
+    void clearTasks();
+
+    void clearEpics();
+
+    void clearSubTasks();
 }
