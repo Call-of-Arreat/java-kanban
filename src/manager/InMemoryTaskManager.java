@@ -24,7 +24,7 @@ public class InMemoryTaskManager implements TaskManager {
     private Map<Integer, Subtask> subtaskHashMap = new HashMap<>();
     private Map<Integer, Epic> epicHashMap = new HashMap<>();
     private List<Task> allTasksList = new ArrayList<>();
-    protected Set<Task> prioritized = new TreeSet<>(Comparator.comparing(Task::getStartTime));
+    private Set<Task> prioritized = new TreeSet<>(Comparator.comparing(Task::getStartTime));
 
     public InMemoryTaskManager(InMemoryHistoryManager history) {
         InMemoryTaskManager.history = history;
@@ -132,11 +132,6 @@ public class InMemoryTaskManager implements TaskManager {
 
     public void setAllTasksList(List<Task> allTasksList) {
         this.allTasksList = allTasksList;
-    }
-
-    @Override
-    public int generateId() {
-        return taskId++;
     }
 
     @Override

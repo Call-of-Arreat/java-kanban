@@ -17,18 +17,6 @@ public class Epic extends Task {
         subTaskIds = new ArrayList<>();
     }
 
-    public Epic(String name, String taskDescription, Duration duration, LocalDateTime startTime,
-                LocalDateTime endTime) {
-        super(name, taskDescription, duration, startTime);
-        this.endTime = endTime;
-        subTaskIds = new ArrayList<>();
-    }
-
-    public Epic(String taskName, String taskDescription, Status taskStatus) {
-        super(taskName, taskDescription, taskStatus);
-        subTaskIds = new ArrayList<>();
-    }
-
     public Epic(int taskId, String taskName, Status taskStatus, String taskDescription, LocalDateTime startTime,
                 LocalDateTime endTime, Duration duration) {
         super(taskId, taskName, taskStatus, taskDescription, duration, startTime);

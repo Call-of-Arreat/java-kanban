@@ -38,12 +38,6 @@ public class Task {
         status = Status.NEW;
     }
 
-    public Task(String taskName, String taskDescription, Status taskStatus) {
-        this.name = taskName;
-        this.description = taskDescription;
-        this.status = Status.NEW;
-    }
-
     public String getName() {
         return name;
     }
