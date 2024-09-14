@@ -23,9 +23,9 @@ class FileBackedTaskManagerTest {
     @BeforeEach
     void beforeEach() throws IOException {
         file = File.createTempFile("test", ".csv");
-        task = new Task("testTask", "testTaskDescription", Status.IN_PROGRESS);
-        epic = new Epic("testEpic", "testEpicDescription", Status.IN_PROGRESS);
-        subTask = new Subtask("testSub", "testSubDescription", Status.IN_PROGRESS, 2);
+        task = new Task("testTask", "testTaskDescription");
+        epic = new Epic("testEpic", "testEpicDescription");
+        subTask = new Subtask("testSub", "testSubDescription", 2);
     }
 
     @Test

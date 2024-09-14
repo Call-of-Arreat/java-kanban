@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TaskManager {
 
-    int generateId();
+    List<Task> getPrioritizedTasks();
 
     List<Task> getAllTasks();
 
@@ -39,6 +39,8 @@ public interface TaskManager {
 
     void updateSubTask(Subtask updateSubTask);
 
+    void updateEpic(Epic epic);
+
     void updateEpicTaskStatus(Epic updateEpicTask);
 
     void removeSubTaskById(Integer id);
@@ -52,4 +54,5 @@ public interface TaskManager {
     void clearEpics();
 
     void clearSubTasks();
+
 }
