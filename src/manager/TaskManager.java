@@ -55,4 +55,9 @@ public interface TaskManager {
 
     void clearSubTasks();
 
+    List<Subtask> findAllSubtaskByEpicId(int id);
+
+    Subtask findSubTaskById(int id);
+
+    Epic findEpicById(int id);
 }

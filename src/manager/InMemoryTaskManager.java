@@ -326,6 +326,18 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
+    public Epic findEpicById(int id) {
+        history.add(epicHashMap.get(id));
+        return epicHashMap.get(id);
+    }
+
+    @Override
+    public Subtask findSubTaskById(int id) {
+        history.add(subtaskHashMap.get(id));
+        return subtaskHashMap.get(id);
+    }
+
+    @Override
     public void removeSubTaskById(Integer id) {
         Subtask subtask = subtaskHashMap.get(id);
         if (subtask != null) {
