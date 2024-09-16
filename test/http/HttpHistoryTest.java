@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import manager.Managers;
 import manager.TaskManager;
 import manager.http.HttpTaskServer;
-import manager.http.TaskTypeToken;
+import manager.http.tokens.TaskTypeToken;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,10 +26,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HttpHistoryTest {
     // создаём экземпляр InMemoryTaskManager
-    TaskManager manager = Managers.getDefault();
+    private final TaskManager manager = Managers.getDefault();
     // передаём его в качестве аргумента в конструктор HttpTaskServer
-    HttpTaskServer taskServer = new HttpTaskServer(manager);
-    Gson gson = taskServer.getGson();
+    private final HttpTaskServer taskServer = new HttpTaskServer(manager);
+    private Gson gson = taskServer.getGson();
     private static final String BASE_URL = "http://localhost:8080/history";
 
     @BeforeEach
@@ -54,7 +54,7 @@ class HttpHistoryTest {
                 LocalDateTime.of(2024, 8, 24, 10, 0),
                 LocalDateTime.of(2024, 8, 24, 10, 15),
                 Duration.ofMinutes(15));
-        Subtask subtask3 = new Subtask(4, "subtask5", Status.NEW, "sfsfasfas", 12,Duration.ofMinutes(12),LocalDateTime.of(2024, 8, 26, 20, 40));
+        Subtask subtask3 = new Subtask(4, "subtask5", Status.NEW, "sfsfasfas", 12, Duration.ofMinutes(12), LocalDateTime.of(2024, 8, 26, 20, 40));
 
         manager.addNewTask(task1);
         manager.addNewEpicTask(epic2);

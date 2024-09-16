@@ -68,28 +68,6 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
-    private boolean checkForIntersection(Task task1, Task task2) {
-        return !task1.getEndTime().isBefore(task2.getStartTime()) &&
-                !task1.getStartTime().isAfter(task2.getEndTime());
-    }
-
-    private void validatePrioritized(Task task) {
-        if (task == null || task.getStartTime() == null) return;
-        List<Task> taskList = getPrioritizedTasks();
-
-        for (Task someTask : taskList) {
-            if (someTask == task) {
-                continue;
-            }
-            boolean taskIntersection = checkForIntersection(task, someTask);
-
-            if (taskIntersection) {
-                throw new ManagerSaveException("Задачи - " + task.getId() + " и + " + someTask.getId()
-                        + "пересекаются");
-            }
-        }
-    }
-
     public static void setHistory(InMemoryHistoryManager history) {
         InMemoryTaskManager.history = history;
     }
@@ -398,6 +376,28 @@ public class InMemoryTaskManager implements TaskManager {
             epic.clearSubTasks();
             updateEpicTaskStatus(epic);
             updateEpicTime(epic);
+        }
+    }
+
+    private boolean checkForIntersection(Task task1, Task task2) {
+        return !task1.getEndTime().isBefore(task2.getStartTime()) &&
+                !task1.getStartTime().isAfter(task2.getEndTime());
+    }
+
+    private void validatePrioritized(Task task) {
+        if (task == null || task.getStartTime() == null) return;
+        List<Task> taskList = getPrioritizedTasks();
+
+        for (Task someTask : taskList) {
+            if (someTask == task) {
+                continue;
+            }
+            boolean taskIntersection = checkForIntersection(task, someTask);
+
+            if (taskIntersection) {
+                throw new ManagerSaveException("Задачи - " + task.getId() + " и + " + someTask.getId()
+                        + "пересекаются");
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package manager.http;
+package manager.http.tokens;
 
 import com.google.gson.reflect.TypeToken;
 import tasks.Epic;

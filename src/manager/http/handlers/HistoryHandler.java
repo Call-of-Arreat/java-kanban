@@ -1,4 +1,4 @@
-package manager.http;
+package manager.http.handlers;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
@@ -6,8 +6,8 @@ import manager.TaskManager;
 
 import java.io.IOException;
 
-public class PrioritizedHandler extends BaseHttpHandler {
-    public PrioritizedHandler(TaskManager taskManager, Gson gson) {
+public class HistoryHandler extends BaseHttpHandler {
+    public HistoryHandler(TaskManager taskManager, Gson gson) {
         super(taskManager, gson);
     }
 
@@ -16,9 +16,9 @@ public class PrioritizedHandler extends BaseHttpHandler {
         String requestMethod = exchange.getRequestMethod();
         String[] split = exchange.getRequestURI().getPath().split("/");
 
-        if (requestMethod.equals("GET") && split[1].equals("prioritized")) {
+        if (requestMethod.equals("GET") && split[1].equals("history")) {
             try {
-                sendText(exchange, gson.toJson(taskManager.getPrioritizedTasks()));
+                sendText(exchange, gson.toJson(taskManager.getHistory()));
             } catch (Exception e) {
                 writeResponse(exchange, 500, "");
             }

@@ -102,11 +102,11 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         String name = lines[2];
         Status status = Status.valueOf(lines[3]);
         String description = lines[4];
-        LocalDateTime startTime = LocalDateTime.of(LocalDate.parse(lines[5], dateFormatter), LocalTime.parse(lines[6],
+        LocalDateTime startTime = LocalDateTime.of(LocalDate.parse(lines[5], formatter), LocalTime.parse(lines[6],
                 timeFormatter));
         Duration duration = Duration.ofMinutes(Long.parseLong(lines[9]));
         if ("EPIC".equals(taskType)) {
-            LocalDateTime endEpicTime = LocalDateTime.of(LocalDate.parse(lines[7], dateFormatter),
+            LocalDateTime endEpicTime = LocalDateTime.of(LocalDate.parse(lines[7], formatter),
                     LocalTime.parse(lines[8], timeFormatter));
             return new Epic(id, name, status, description, startTime, endEpicTime, duration);
         } else if ("SUBTASK".equals(taskType)) {

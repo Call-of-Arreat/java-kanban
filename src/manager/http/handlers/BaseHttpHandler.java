@@ -1,4 +1,4 @@
-package manager.http;
+package manager.http.handlers;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
@@ -39,8 +39,6 @@ public abstract class BaseHttpHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         try {
             safeHandle(exchange);
-        } catch (NullPointerException e) {
-            sendNotFound(exchange);
         } catch (ManagerSaveException e) {
             sendHasInteractions(exchange);
         } catch (Exception e) {
@@ -58,7 +56,7 @@ public abstract class BaseHttpHandler implements HttpHandler {
             case "GET": {
                 if (path.length == 3 && isNum(path[2])) {
                     return Endpoint.GET_BY_ID;
-                } else if (path.length == 4 && path[1].equals("epics") && path[3].equals("subtasks")) {
+                } else if (path.length == 4 && "epics".equals(path[1]) && "subtasks".equals(path[3])) {
                     return Endpoint.GET_SUBS_BY_EPIC_ID;
                 }
                 return Endpoint.GET;

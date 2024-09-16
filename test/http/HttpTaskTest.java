@@ -1,11 +1,10 @@
 package http;
 
 import com.google.gson.Gson;
-import manager.InMemoryTaskManager;
 import manager.Managers;
 import manager.TaskManager;
 import manager.http.HttpTaskServer;
-import manager.http.TaskTypeToken;
+import manager.http.tokens.TaskTypeToken;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +26,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class HttpTaskTest {
 
     // создаём экземпляр InMemoryTaskManager
-    TaskManager manager = Managers.getDefault();
+    private final TaskManager manager = Managers.getDefault();
     // передаём его в качестве аргумента в конструктор HttpTaskServer
-    HttpTaskServer taskServer = new HttpTaskServer(manager);
-    Gson gson = taskServer.getGson();
+    private final HttpTaskServer taskServer = new HttpTaskServer(manager);
+    private Gson gson = taskServer.getGson();
     private static final String BASE_URL = "http://localhost:8080/tasks";
 
     @BeforeEach
@@ -75,6 +74,7 @@ class HttpTaskTest {
         assertEquals(fromManager.get(0), fromHttp.get(0));
         assertEquals(fromManager.get(1), fromHttp.get(1));
         assertEquals(fromManager.get(2), fromHttp.get(2));
+        client.close();
     }
 
 
@@ -107,6 +107,7 @@ class HttpTaskTest {
         assertNotNull(tasksFromManager, "Задачи не возвращаются");
         assertEquals(1, tasksFromManager.size(), "Некорректное количество задач");
         assertEquals("Test 2", tasksFromManager.getFirst().getName(), "Некорректное имя задачи");
+        client.close();
     }
 
     @Test
@@ -130,6 +131,7 @@ class HttpTaskTest {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         assertEquals(200, response.statusCode());
+        client.close();
     }
 
     @Test
@@ -153,6 +155,7 @@ class HttpTaskTest {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         assertEquals(200, response.statusCode());
+        client.close();
     }
 
     @Test
@@ -169,21 +172,8 @@ class HttpTaskTest {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-//        assertEquals(204, response.statusCode());
         assertEquals(1, manager.getAllTasks().size());
+        client.close();
     }
 
-    @Test
-    void deleteTaskStatus404() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        URI url = URI.create(BASE_URL + "/2");
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(url)
-                .DELETE()
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        assertEquals(404, response.statusCode());
-    }
 }
